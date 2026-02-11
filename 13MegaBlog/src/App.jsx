@@ -1,17 +1,36 @@
-import { useState } from 'react'
-import{ usedispatch} from 'react-redux'
+import { use, useState } from 'react'
+import{useDispatch} from 'react-redux'
 import './App.css'
-import { AuthService } from './appwrite/auth';
+import authService, { AuthService } from './appwrite/auth';
+import { login,logout } from './store/authslice';
 
 function App() {
 const [loading, setLoading] = useState(true);
-const dispatch = usedispatch();
+const dispatch = useDispatch();
 
-  return (
-    <>
-     <h1>a blog with appwrite</h1>
-    </>
-  )
+useEffect(() => {
+  authService.currentUser()
+  .then((userData) => {
+    if(userData) {
+      dispatch(login(userData));
+    } else {
+      dispatch(logout());
+    }
+
+  })
+}, [])
+
+  return !loading ? (
+    <div className="min-h-screen flex flex-wrap 
+    content-between bg-grey-400">
+     <div className='w-fulll block'>
+      <Header/>
+      <main></main>
+      <Footer/>
+     </div>
+    </div>
+  ) :null;
+  
 }
 
 export default App
