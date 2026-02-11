@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import{ usedispatch} from 'react-redux'
 import './App.css'
+import { AuthService } from './appwrite/auth';
 
 function App() {
-  console.log(import.meta.env.VITE_APPWRITE_URL  )
+const [loading, setLoading] = useState(true);
+const dispatch = usedispatch();
 
   return (
     <>
