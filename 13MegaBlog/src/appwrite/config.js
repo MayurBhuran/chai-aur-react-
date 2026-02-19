@@ -1,4 +1,4 @@
-import conf from "../Conf.js";
+import conf from "../Conf/conf.js";
 import { Client, ID, Databases,Storage,Query } from 
 "appwrite";
 

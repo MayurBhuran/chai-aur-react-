@@ -1,5 +1,6 @@
 import { use, useState } from 'react'
 import{useDispatch} from 'react-redux'
+import { useEffect } from 'react';
 import './App.css'
 import authService, { AuthService } from './appwrite/auth';
 import { login,logout } from './store/authslice';
@@ -9,7 +10,7 @@ const [loading, setLoading] = useState(true);
 const dispatch = useDispatch();
 
 useEffect(() => {
-  authService.currentUser()
+  authService.getCurrentUser()
   .then((userData) => {
     if(userData) {
       dispatch(login(userData));
